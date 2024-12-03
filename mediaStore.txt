@@ -1,0 +1,136 @@
+CREATE TABLE full_catalog (
+	storage_id INTEGER PRIMARY KEY,
+	distributor VARCHAR(50),
+	title VARCHAR(255),
+	release_date DATE,
+	genre VARCHAR(25),
+	category VARCHAR(50),
+	rights_expire DATE
+);
+
+CREATE TABLE movie (
+	movie_id INTEGER PRIMARY KEY,
+	storage_id INT,
+	franchise VARCHAR(50),
+	director VARCHAR(50),
+	cast_members VARCHAR(255),
+	length_minutes INT,
+	CONSTRAINT fk_full_catalog FOREIGN KEY (storage_id)
+	REFERENCES full_catalog(storage_id)
+);
+
+
+CREATE TABLE song (
+	song_id INTEGER PRIMARY KEY,
+	storage_id INT,
+	artist VARCHAR(255),
+	album_or_ep VARCHAR(255),
+	length_seconds INT,
+	features VARCHAR(255),
+	producer VARCHAR(255),
+	CONSTRAINT fk_full_catalog FOREIGN KEY (storage_id)
+	REFERENCES full_catalog(storage_id)
+);
+
+
+CREATE TABLE ebook (
+	isbn INTEGER PRIMARY KEY,
+	storage_id INT,
+	author VARCHAR(50),
+	franchise VARCHAR(255),
+	volume INT,
+	pages INT,
+	type VARCHAR(25),
+	CONSTRAINT fk_full_catalog FOREIGN KEY (storage_id)
+	REFERENCES full_catalog(storage_id)
+);
+
+INSERT INTO full_catalog (storage_id, distributor, title, release_date, genre, category, rights_expire)
+VALUES (0001, 'Warner Bros.', 'Training Day', '2001-10-05', 'Thriller/Crime', 'Movies', '9999-01-01');
+
+INSERT INTO movie (movie_id, storage_id, franchise, director, cast_members, length_minutes) VALUES (4001, 0001, 'N/A', 'Antoine Fuqua', 'Denzel Washington, Ethan Hawke, Eva Mendes', 122);
+
+INSERT INTO full_catalog VALUES (0002, 'Sony Pictures Releasing', 'The Equalizer', '2014-09-26', 'Action/Thriller', 'Movies', '2026-10-19');
+INSERT INTO full_catalog VALUES (0003, 'Universal Pictures', 'Shaun of the Dead', '2004-09-24', 'Horror/Comedy', 'Movies', '9999-01-01');
+INSERT INTO full_catalog VALUES (0004, 'Paramount Pictures', 'Dungeons & Dragons: Honor Among Thieves', '2023-03-31', 'Action/Comedy', 'Movies','2025-05-05');
+INSERT INTO full_catalog VALUES (0005, 'Universal Pictures', 'The Invisible Man', '2020-02-28', 'Horror/Sci-fi', 'Movies', '2027-01-01');
+INSERT INTO full_catalog VALUES (0006, 'Bryanston Distributing Company', 'Texas Chainsaw Massacre', '1974-10-01', 'Horror', 'Movies', '9999-01-01');
+INSERT INTO full_catalog VALUES (0007, 'Buena Vista Pictures Distribution', 'Toy Story', '1995-11-19', 'Family/Comedy', 'Movies', '2025-04-18');
+INSERT INTO full_catalog VALUES (0008, 'Buena Vista Pictures Distribution', 'Toy Story', '1999-11-13', 'Family/Comedy', 'Movies', '2025-04-18');
+INSERT INTO full_catalog VALUES (0009, 'Walt Disney Studios Motion Pictures', 'Toy Story 3', '2010-06-12', 'Family/Comedy', 'Movies', '2025-04-18');
+INSERT INTO full_catalog VALUES (0010, 'Walt Disney Studios Motion Pictures', 'Toy Story 4', '2019-06-11', 'Family/Comedy', 'Movies', '2025-04-18');
+INSERT INTO full_catalog VALUES (0011, '20th Century Fox', 'My Cousin Vinny', '1992-03-13', 'Comedy', 'Movies', '2023-12-19');
+INSERT INTO full_catalog VALUES (0012, '20th Century Fox', 'The King of Comedy', '1982-12-18', 'Comedy', 'Movies', '2023-12-25');
+INSERT INTO full_catalog VALUES (0013, 'Paramount Pictures', 'Hugo', '2011-10-10', 'Adventure', 'Movies', '9999-01-01');
+
+
+INSERT INTO movie (movie_id, storage_id, franchise, director, cast_members, length_minutes) 
+VALUES 
+(4002, 0002, 'The Equalizer', 'Antoine Fuqua', 'Denzel Washington, Marton Csokas, Chloe Grace Moretz', 132),
+(4003, 0003, 'Three Flavours Cornetto', 'Edgar Wright', 'Simon Pegg, Kate Ashfield, Lucy Davis', 99),
+(4004, 0004, 'N/A', 'Jonathan Goldstein, John Francis Daley', 'Chris Pine, Michelle Rodriguez, Sophia Lillis', 134),
+(4005, 0005, 'N/A', 'Leigh Whannell', 'Elisabeth Moss, Aldis Hodge, Storm Reid', 125),
+(4006, 0006, 'The Texas Chainsaw Massacre', 'Tobe Hooper', 'Marilyn Burns, Paul A. Partain, Edwin Neal', 83),
+(4007, 0007, 'Toy Story', 'John Lasseter', 'Tom Hanks, Tim Allen, Don Rickles', 81),
+(4008, 0008, 'Toy Story', 'John Lasseter', 'Tom Hanks, Tim Allen, Joan Cusack', 92),
+(4009, 0009, 'Toy Story', 'Lee Unkrich', 'Tom Hanks, Tim Allen, Don Rickles', 100),
+(4010, 0010, 'Toy Story', 'Josh Cooley', 'Tom Hanks, Tim Allen, Keanu Reeves', 100),
+(4011, 0011, 'N/A', 'Jonathan Lynn', 'Joe Pesci, Ralph Macchio, Marisa Tomei', 120),
+(4012, 0012, 'N/A', 'Martin Scorsese', 'Robert De Niro, Jerry Lewis, Tony Randall', 169),
+(4013, 0013, 'N/A', 'Martin Scorsese', 'Ben Kingsley, Asa Butterfield, Chloe Grace Moretz', 126);
+
+
+
+INSERT INTO full_catalog VALUES (0014, 'J.B. Lippincott & Co.', 'To Kill a Mockingbird', '1960-07-11', 'Southern Gothic', 'Books', '9999-01-01');
+INSERT INTO full_catalog VALUES (0015, 'Scholastic', 'The Hunger Games', '2008-09-14', 'Young Adult', 'Books', '2028-03-18');
+INSERT INTO full_catalog VALUES (0016, 'Scholastic', 'Catching Fire', '2009-09-01', 'Young Adult', 'Books', '2028-03-18');
+INSERT INTO full_catalog VALUES (0017, 'Scholastic', 'Mockingjay', '2010-08-24', 'Young Adult', 'Books', '2028-03-18');
+INSERT INTO full_catalog VALUES (0018, 'Gallery Books', 'The Unhoneymooners', '2019-05-14', 'Romance', 'Books', '9999-01-01');
+INSERT INTO full_catalog VALUES (0019, 'Penguin Publishing Group', 'Love, Theoretically', '2023-06-13', 'Romance', 'Books', '2025-09-18');
+INSERT INTO full_catalog VALUES (0020, e'St. Martin\'s Publishing Group', 'The Nightingale', '2015-02-03', 'Historical fiction', 'Books', '2028-02-04');
+INSERT INTO full_catalog VALUES (0021, 'Covici Friede', 'Of Mice and Men', '1937-02-16', 'Tragedy', 'Books', '2037-02-15');
+INSERT INTO full_catalog VALUES (0022, 'Archibald Constable and Company (UK)', 'Dracula', '1897-05-26', 'Horror', 'Books', '9999-01-01');
+INSERT INTO full_catalog VALUES (0023, 'Ballantine Books', 'Fahrenheit 451', '1953-10-19', 'Science Fiction', 'Books', '2030-04-06');
+INSERT INTO full_catalog VALUES (0024, 'Ballantine Books', 'Ready Player One', '2011-08-16', 'Science Fiction', 'Books', '2026-07-15');
+INSERT INTO full_catalog VALUES (0025, 'Ballantine Books', 'Ready Player Two', '2020-11-24', 'Science Fiction', 'Books', '2026-07-15');
+
+ALTER TABLE ebook ALTER COLUMN isbn TYPE BIGINT;
+
+INSERT INTO ebook (isbn, storage_id, author, franchise, volume, pages) 
+VALUES
+(9780062368683, 0014, 'Harper Lee', 'None', 1, 281),
+(9780439023528, 0015, 'Suzanne Collins', 'The Hunger Games', 1, 374),
+(9780439023535, 0016, 'Suzanne Collins', 'The Hunger Games', 2, 391),
+(9780439023511, 0017, 'Suzanne Collins', 'The Hunger Games', 3, 390),
+(9781501128042, 0018, 'Christina Lauren', 'None', 1, 429),
+(9780593336878, 0019, 'Ali Hazelwood', 'The Love Hypothesis', 3, 400),
+(9781466850606, 0020, 'Kristin Hannah', 'None', 1, 564),
+(9781405878630, 0021, 'John Steinbeck', 'None', 1, 107),
+(9780191616013, 0022, 'Bram Stoker', 'None', 1, 418),
+(9781439142677, 0023, 'Ray Bradbury', 'None', 1, 156),
+(9780307887450, 0024, 'Ernest Cline', 'Ready Player One', 1, 374),
+(9781524761356, 0025, 'Ernest Cline', 'Ready Player One', 2, 384);
+
+INSERT INTO full_catalog (storage_id, distributor, title, release_date, genre, category, rights_expire)
+VALUES 
+(0026, 'Atlantic Records', 'Black Dog - Remaster', '1971-11-08', 'Rock', 'Music', '9999-01-01'),
+(0027, 'Atlantic Records', 'Stairway to Heaven - Remaster', '1971-11-08', 'Rock', 'Music', '9999-01-01'),
+(0028, 'Atlantic Records', 'When the Levee Breaks - Remaster', '1971-11-08', 'Rock', 'Music', '9999-01-01'),
+(0029, 'XL Recordings', 'Rolling in the Deep', '2011-01-24', 'Pop', 'Music', '2025-10-15'),
+(0030, 'XL Recordings', 'Turning Tables', '2011-01-24', 'Pop', 'Music', '2025-10-15'),
+(0031, 'XL Recordings', 'Set Fire to the Rain', '2011-01-24', 'Pop', 'Music', '2025-10-15'),
+(0032, 'XL Recordings', 'Someone Like You', '2011-01-24', 'Pop', 'Music', '2025-10-15'),
+(0033, '88rising Records LLC', 'Run', '2020-02-06', 'Alternative', 'Music', '9999-01-01'),
+(0034, 'Universal Music Publishing', 'Fortnight', '2024-04-18', 'Pop', 'Music', '2025-10-15');
+
+INSERT INTO song (song_id, storage_id, artist, album_or_ep, length_seconds, features, producer)
+VALUES
+(8001, 0026, 'Led Zeppelin', 'Led Zeppelin IV (Remaster)', 295, 'N/A', 'Jimmy Page'),
+(8002, 0027, 'Led Zeppelin', 'Led Zeppelin IV (Remaster)', 482, 'N/A', 'Jimmy Page'),
+(8003, 0028, 'Led Zeppelin', 'Led Zeppelin IV (Remaster)', 428, 'N/A', 'Jimmy Page'),
+(8004, 0029, 'Adele', '21', 228, 'N/A', 'Paul Epworth'),
+(8005, 0030, 'Adele', '21', 250, 'N/A', 'Jim Abbiss'),
+(8006, 0031, 'Adele', '21', 242, 'N/A', 'Fraser T. Smith'),
+(8007, 0032, 'Adele', '21', 285, 'N/A', 'Dan Wilson'),
+(8008, 0033, 'Joji', 'N/A', 195, 'N/A', 'Justin Parker'),
+(8009, 0034, 'Taylor Swift', 'The Tortured Poets Department', 228, 'Post Malone', 'Jack Antonoff, Taylor Swift');
