@@ -1,4 +1,4 @@
-Some of the websites I browsed or clicked on during working on this project:
+Some of the websites I browsed or clicked on during working on this project (likely overcited):
 
 https://www.postgresql.org/docs/7.0/postgres.htm
 
@@ -12,7 +12,7 @@ https://superuser.com/questions/1602840/postgres-column-with-multiple-values
 
 https://www.w3schools.com/sql/default.asp
 
-https://roadmap.sh/backend
+https://roadmap.sh/backend [probably unneccessary reference]
 
 https://www.freecodecamp.org/news/how-to-come-up-with-coding-project-ideas/
 
